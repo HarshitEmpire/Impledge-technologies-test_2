@@ -1,0 +1,25 @@
+{
+    "name": "Get Shipment Details",
+    "request": {
+      "method": "GET",
+      "header": [
+        { "key": "Authorization", "value": "Bearer YOUR_API_KEY" }
+      ],
+      "url": "https://api.easypost.com/v2/shipments/shp_e0b570fd1d7d4b62bd206917eae5881a"
+    },
+    "event": [
+      {
+        "listen": "test",
+        "script": {
+          "exec": [
+            "pm.test('Retail rate is 12', function() {",
+            "  pm.expect(pm.response.json().selected_rate.retail_rate).to.equal(12);",
+            "});",
+            "pm.test('Retail rate > List rate', function() {",
+            "  pm.expect(pm.response.json().selected_rate.retail_rate).to.be.greaterThan(pm.response.json().selected_rate.list_rate);",
+            "});"
+          ]
+        }
+      }
+    ]
+  }
